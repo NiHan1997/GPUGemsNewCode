@@ -1,4 +1,4 @@
-﻿Shader "Custom/Diffraction"
+﻿Shader "GPU Gems/Chapter_08 Diffraction/Diffraction"
 {
     Properties
     {
