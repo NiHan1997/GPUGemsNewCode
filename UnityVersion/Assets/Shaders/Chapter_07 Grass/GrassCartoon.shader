@@ -151,7 +151,8 @@ Shader "GPU Gems/Chapter_07 Grass/GrassCartoon"
 		float3 wind = normalize(float3(windSample.x, windSample.y, 0));
 
 		// 最后获得风向变换的矩阵.
-		float3x3 windRotation = AngleAxis3x3(UNITY_PI / 2 * windSample, wind);
+		float3x3 windRotation = AngleAxis3x3(UNITY_PI / 4 * windSample, wind);
+		//float3x3 windRotation = AngleAxis3x3(0, wind);
 
 		float3 vNormal = IN[0].normal;
 		float4 vTangent = IN[0].tangent;
@@ -200,11 +201,7 @@ Shader "GPU Gems/Chapter_07 Grass/GrassCartoon"
 
         Pass
         {
-			Tags
-			{
-				"RenderType" = "Opaque"
-				"LightMode" = "ForwardBase"
-			}
+			Tags { "RenderType" = "Opaque" "LightMode" = "ForwardBase" }
 
             CGPROGRAM
             #pragma vertex vert
@@ -212,7 +209,7 @@ Shader "GPU Gems/Chapter_07 Grass/GrassCartoon"
             #pragma fragment frag
 			#pragma hull hull
 			#pragma domain domain
-			#pragma target 4.6
+			#pragma target 4.6					// 曲面细分必须在 Shader Model 4.6 之后才有.
 			#pragma multi_compile_fwdbase
             
 			#include "Lighting.cginc"
@@ -239,10 +236,7 @@ Shader "GPU Gems/Chapter_07 Grass/GrassCartoon"
 
 		Pass
 		{
-			Tags
-			{
-				"LightMode" = "ShadowCaster"
-			}
+			Tags { "LightMode" = "ShadowCaster" }
 
 			CGPROGRAM
 			#pragma vertex vert

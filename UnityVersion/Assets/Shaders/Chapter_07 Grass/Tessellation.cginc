@@ -11,7 +11,7 @@ struct vertexInput
     float4 tangent : TANGENT;
 };
 
-// 顶点输出, 顶点着色器不必变换到投影空间, 但是一定要在几何着色器完成之前保证顶点变换到投影空间.
+// 流水线最终顶点输出, 顶点着色器不必变换到投影空间, 但是一定要在几何着色器完成之前保证顶点变换到投影空间.
 struct vertexOutput
 {
     float4 vertex : SV_POSITION;
